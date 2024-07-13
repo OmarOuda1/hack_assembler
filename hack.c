@@ -1,9 +1,7 @@
-// #include <stddef.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-// #include <stdbool.h>
 
 void strrev(char* str)
 {
@@ -149,18 +147,6 @@ void index_symbols(FILE* fptr) {
             // printf("that was a comment\n");
             continue;
         }
-        // else if (!strncmp(token, "@", 1) && !isdigit(*(token+1))) {
-        //     char* ptr = strchr(token, '\n');
-        //     if (ptr) {*ptr = '\0';}
-
-        //     Current_Line++;
-        //     if (-1 != look_for(token+1)) {continue;}
-
-        //     strcpy(lookup_table[Current_Avail_Index].key, token+1);
-        //     lookup_table[Current_Avail_Index].value = Current_Avail_Memory;
-        //     Current_Avail_Index++;
-        //     Current_Avail_Memory++;
-        // }
         else if (!strncmp(token, "(", 1)){
             char* ptr = strchr(token, ')');
             if (ptr) {*ptr = '\0';}
@@ -254,12 +240,6 @@ void Cinst(char* inst,char* result) {
     memcpy(result , bin_inst, 17);
 }
 
-// TODO  create file.hack with the binary code in it DONE
-// remove debug printf statments DONE
-// replace the hard coded path with argv DONE
-// remove non-used header files DONE
-// add some comments for documentation
-// implement symbols
 
 int main(int argc,char* argv[]) {
 
@@ -284,9 +264,6 @@ int main(int argc,char* argv[]) {
 
     FILE *asm_fptr = fopen(asm_path, "r");
     FILE *bin_fptr = fopen(bin_path, "w");
-    // fprintf(bin_fptr, "\0");
-    // fclose(bin_fptr);
-    // bin_fptr = fopen(bin_path, "w");
 
 
     initialize_table();
@@ -317,7 +294,6 @@ int main(int argc,char* argv[]) {
             continue;
         }
         else if (!strncmp(token, "//",2)) {
-            // printf("that was a comment\n");
             continue;
         }
         else if (!strncmp(token, "@", 1)) {
@@ -327,8 +303,6 @@ int main(int argc,char* argv[]) {
         else {
             Cinst(token,inst);
         }
-        //printf("%s",line);
-        // printf("Inst = %s \n",inst);
         fprintf(bin_fptr, "%s\n",inst);
     }
 
